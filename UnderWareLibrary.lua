@@ -67,6 +67,14 @@ function library:Window(options)
 	BloxburgUi.Parent = game:GetService("CoreGui")
 	BloxburgUi.DisplayOrder = 1
 	MainUIFrame.Name = "MainUIFrame"
+	
+	if syn and syn.protect_gui then
+	    syn.protect_gui(BloxburgUi)
+	    syn.protect_gui(game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("NotificationFrame"))
+	elseif gethui then
+	    BloxburgUi.Parent = gethui()
+	end
+	
 	MainUIFrame.Parent = BloxburgUi
 	MainUIFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	MainUIFrame.BackgroundTransparency = 1.000
