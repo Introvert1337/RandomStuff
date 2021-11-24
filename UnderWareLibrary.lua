@@ -705,6 +705,7 @@ function library:Window(options)
 			    local min = options.Min
 				local max = options.Max 
 				local name = options.Name
+				local callback = options.Callback
 				
 			    local setting = GetSetting(name) 
 				setting = setting and tonumber(setting)
