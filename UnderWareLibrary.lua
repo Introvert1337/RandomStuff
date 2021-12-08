@@ -283,7 +283,6 @@ function library:Window(options)
 			NotificationText.Size = UDim2.new(0, 268, 0, 66)
 			NotificationText.ZIndex = 2
 			NotificationText.Font = Enum.Font.GothamSemibold
-            NotificationText.TextScaled = true
 			NotificationText.Text = content.Text
 			NotificationText.TextColor3 = Color3.fromRGB(233, 233, 233)
 			NotificationText.TextSize = 14.000
