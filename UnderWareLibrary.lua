@@ -79,7 +79,7 @@ function library:Window(options)
 	MainUIFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	MainUIFrame.BackgroundTransparency = 1.000
 	MainUIFrame.Position = UDim2.new(0.252025217, 0, 0.226720661, 0)
-	MainUIFrame.Size = UDim2.new(0, 551, 0, 404)
+	MainUIFrame.Size = UDim2.new(0, 551, 0, 480)
 	MainUIFrame.Image = "rbxassetid://3570695787"
 	MainUIFrame.ImageColor3 = Color3.fromRGB(22, 22, 22)
 	MainUIFrame.ScaleType = Enum.ScaleType.Slice
@@ -102,8 +102,8 @@ function library:Window(options)
 	TabsHolder.Parent = MainUIFrame
 	TabsHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TabsHolder.BackgroundTransparency = 1.000
-	TabsHolder.Position = UDim2.new(0, 0, 0.27, 0)
-	TabsHolder.Size = UDim2.new(0, 125, 0, 295)
+	TabsHolder.Position = UDim2.new(0, 0, 0.21, 0)
+	TabsHolder.Size = UDim2.new(0, 125, 0, 378)
 	TabsHolder.Image = "rbxassetid://3570695787"
 	TabsHolder.ImageColor3 = Color3.fromRGB(24, 24, 24)
 	TabsHolder.ScaleType = Enum.ScaleType.Slice
@@ -143,7 +143,7 @@ function library:Window(options)
 	BloxburgTitle2.Parent = MainUIFrame
 	BloxburgTitle2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	BloxburgTitle2.BackgroundTransparency = 1.000
-	BloxburgTitle2.Position = UDim2.new(0.08, 0, 0.174, 0)
+	BloxburgTitle2.Position = UDim2.new(0.08, 0, 0.135, 0)
 	BloxburgTitle2.Size = UDim2.new(0, 372, 0, 35)
 	BloxburgTitle2.Font = Enum.Font.GothamBold
 	BloxburgTitle2.Text = "Ware"
@@ -155,7 +155,7 @@ function library:Window(options)
 	BloxburgHubTitle.Parent = MainUIFrame
 	BloxburgHubTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	BloxburgHubTitle.BackgroundTransparency = 1.000
-	BloxburgHubTitle.Position = UDim2.new(0.075, 0, 0.13, 0)
+	BloxburgHubTitle.Position = UDim2.new(0.075, 0, 0.1, 0)
 	BloxburgHubTitle.Size = UDim2.new(0, 372, 0, 35)
 	BloxburgHubTitle.Font = Enum.Font.GothamBold
 	BloxburgHubTitle.Text = "Under"
@@ -506,7 +506,7 @@ function library:Window(options)
 		TabSelected.Parent = TabsHolder
 		TabSelected.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 		TabSelected.BorderSizePixel = 0
-		TabSelected.Size = UDim2.new(0, 125, 0, 30)
+		TabSelected.Size = UDim2.new(0, 125, 0, 28)
 		TabSelected.AutoButtonColor = false
 		TabSelected.Font = Enum.Font.GothamSemibold
 		TabSelected.Text = name
