@@ -64,7 +64,6 @@ function library:Window(options)
 	local BloxburgTitle2 = Instance.new("TextLabel")
 	local BloxburgHubTitle = Instance.new("TextLabel")
 	BloxburgUi.Name = "BloxburgUi"
-	BloxburgUi.Parent = game:GetService("CoreGui")
 	BloxburgUi.DisplayOrder = 1
 	MainUIFrame.Name = "MainUIFrame"
 	
@@ -535,8 +534,8 @@ function library:Window(options)
 		MainUITabPicked.Active = true
 		MainUITabPicked.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		MainUITabPicked.BackgroundTransparency = 1.000
-		MainUITabPicked.Size = UDim2.new(0, 426, 0, 369)
-		MainUITabPicked.ScrollBarThickness = 2
+		MainUITabPicked.Size = UDim2.new(0, 426, 0, 430)
+		MainUITabPicked.ScrollBarThickness = 0
 		MainUITabPicked.Visible = false
 		UIListLayout_2.Parent = MainUITabPicked
 		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
