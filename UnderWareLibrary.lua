@@ -70,6 +70,7 @@ function library:Window(options)
 	if syn and syn.protect_gui then
 	    syn.protect_gui(BloxburgUi)
 	    syn.protect_gui(game.CoreGui:WaitForChild("RobloxGui"):WaitForChild("NotificationFrame"))
+	    BloxburgUi.Parent = game:GetService("CoreGui")
 	elseif gethui then
 	    BloxburgUi.Parent = gethui()
 	end
