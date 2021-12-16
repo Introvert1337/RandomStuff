@@ -272,7 +272,7 @@ function library:Window(options)
     		NotificationTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
     		NotificationTitle.Size = UDim2.new(0, 261, 0, 31)
     		NotificationTitle.Font = Enum.Font.GothamSemibold
-    		NotificationTitle.Text = "Notification"
+    		NotificationTitle.Text = content.Title
     		NotificationTitle.TextColor3 = Color3.fromRGB(233, 233, 233)
     		NotificationTitle.TextSize = 14.000
     		NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
@@ -361,7 +361,7 @@ function library:Window(options)
     		ErrorTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
     		ErrorTitle.Size = UDim2.new(0, 261, 0, 31)
     		ErrorTitle.Font = Enum.Font.GothamSemibold
-    		ErrorTitle.Text = "Error"
+    		ErrorTitle.Text = content.Title
     		ErrorTitle.TextColor3 = Color3.fromRGB(233, 58, 53)
     		ErrorTitle.TextSize = 14.000
     		ErrorTitle.TextXAlignment = Enum.TextXAlignment.Left
@@ -452,7 +452,7 @@ function library:Window(options)
     		NotificationTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
     		NotificationTitle.Size = UDim2.new(0, 261, 0, 31)
     		NotificationTitle.Font = Enum.Font.GothamSemibold
-    		NotificationTitle.Text = "Confirm"
+    		NotificationTitle.Text = content.Title
     		NotificationTitle.TextColor3 = Color3.fromRGB(233, 233, 233)
     		NotificationTitle.TextSize = 14.000
     		NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
@@ -481,7 +481,7 @@ function library:Window(options)
     		NotificationYes.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
     		NotificationYes.Size = UDim2.new(0, 128, 0, 21)
     		NotificationYes.Font = Enum.Font.GothamSemibold
-    		NotificationYes.Text = "Yes"
+    		NotificationYes.Text = content.ConfirmText
     		NotificationYes.TextColor3 = Color3.fromRGB(0, 255, 0)
     		NotificationYes.TextSize = 13.000
     		NotificationNo.Name = "NotificationNo"
