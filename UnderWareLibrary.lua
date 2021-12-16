@@ -491,7 +491,7 @@ function library:Window(options)
     		NotificationNo.Position = UDim2.new(0.5, 0, 0.782258093, 0)
     		NotificationNo.Size = UDim2.new(0, 128, 0, 21)
     		NotificationNo.Font = Enum.Font.GothamSemibold
-    		NotificationNo.Text = "No"
+    		NotificationNo.Text = content.DeclineText
     		NotificationNo.TextColor3 = Color3.fromRGB(233, 0, 0)
     		NotificationNo.TextSize = 13.000
     		NotificationYes.MouseButton1Click:Connect(function()
