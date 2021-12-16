@@ -361,7 +361,7 @@ function library:Window(options)
     		ErrorTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
     		ErrorTitle.Size = UDim2.new(0, 261, 0, 31)
     		ErrorTitle.Font = Enum.Font.GothamSemibold
-    		ErrorTitle.Text = "ERROR"
+    		ErrorTitle.Text = "Error"
     		ErrorTitle.TextColor3 = Color3.fromRGB(233, 58, 53)
     		ErrorTitle.TextSize = 14.000
     		ErrorTitle.TextXAlignment = Enum.TextXAlignment.Left
