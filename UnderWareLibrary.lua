@@ -199,301 +199,371 @@ function library:Window(options)
 	UserInputService.InputBegan:Connect(function(input)
 		if input.KeyCode == Enum.KeyCode.RightControl then
 			if opened == true then
-				if MainUIFrame.Parent ~= nil then
-					MainUIFrame.ClipsDescendants = true
-					MainUIFrame:TweenSize(UDim2.new(0, 0, 0, 404), Enum.EasingDirection.In, Enum.EasingStyle.Linear, 0.5, true)
-					opened = false
-					wait(0.5)
-				end
+				MainUIFrame.Visible = false
 			elseif opened == false then
-				if MainUIFrame.Parent ~= nil then
-					MainUIFrame:TweenSize(UDim2.new(0, 551, 0, 404), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, true)
-					opened = true
-					wait(0.5)
-					MainUIFrame.ClipsDescendants = false
-				end
+				MainUIFrame.Visible = true
 			end
 		end
 	end)
 
 	local window = {}
-	function window:Notification(options)
-	    local Type = options.Type 
-	    local content = options.Content
-	    local callback = options.Callback 
-	    
-		if Type == "Message" then
-			local NotificationMain = Instance.new("ImageLabel")
-			local NotificationDropShadow = Instance.new("ImageLabel")
-			local NotificationTitleHodler = Instance.new("Frame")
-			local NotificationTitle = Instance.new("TextLabel")
-			local NotificationCool = Instance.new("ImageLabel")
-			local NotificationText = Instance.new("TextLabel")
-			local NotificationOkay = Instance.new("TextButton")
-			NotificationMain.Name = "NotificationMain"
-			NotificationMain.Parent = BloxburgUi
-			NotificationMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationMain.BackgroundTransparency = 1.000
-			NotificationMain.Position = UDim2.new(-0.3, 0, 0.775, 0)
-			tweenObject(NotificationMain, {
-				Position = UDim2.new(0.015, 0, 0.775, 0)
-			}, 0.5)
-			NotificationMain.Size = UDim2.new(0, 268, 0, 124)
-			NotificationMain.Image = "rbxassetid://3570695787"
-			NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
-			NotificationMain.ScaleType = Enum.ScaleType.Slice
-			NotificationMain.SliceCenter = Rect.new(100, 100, 100, 100)
-			NotificationMain.SliceScale = 0.050
-			NotificationDropShadow.Name = "NotificationDropShadow"
-			NotificationDropShadow.Parent = NotificationMain
-			NotificationDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationDropShadow.BackgroundTransparency = 1.000
-			NotificationDropShadow.Position = UDim2.new(-0.315028518, 0, -0.540322602, 0)
-			NotificationDropShadow.Size = UDim2.new(0, 442, 0, 258)
-			NotificationDropShadow.ZIndex = -1
-			NotificationDropShadow.Image = "rbxassetid://5089202498"
-			NotificationTitleHodler.Name = "NotificationTitleHodler"
-			NotificationTitleHodler.Parent = NotificationMain
-			NotificationTitleHodler.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			NotificationTitleHodler.BorderSizePixel = 0
-			NotificationTitleHodler.Size = UDim2.new(0, 268, 0, 31)
-			NotificationTitle.Name = "NotificationTitle"
-			NotificationTitle.Parent = NotificationTitleHodler
-			NotificationTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationTitle.BackgroundTransparency = 1.000
-			NotificationTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
-			NotificationTitle.Size = UDim2.new(0, 261, 0, 31)
-			NotificationTitle.Font = Enum.Font.GothamSemibold
-			NotificationTitle.Text = "Notification"
-			NotificationTitle.TextColor3 = Color3.fromRGB(233, 233, 233)
-			NotificationTitle.TextSize = 14.000
-			NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
-			NotificationCool.Name = "NotificationCool"
-			NotificationCool.Parent = NotificationTitleHodler
-			NotificationCool.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationCool.BackgroundTransparency = 1.000
-			NotificationCool.Position = UDim2.new(0.914178967, 0, 0.225806445, 0)
-			NotificationCool.Size = UDim2.new(0, 17, 0, 17)
-			NotificationCool.Image = "rbxgameasset://Images/w"
-			NotificationText.Name = "NotificationText"
-			NotificationText.Parent = NotificationMain
-			NotificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationText.BackgroundTransparency = 1.000
-			NotificationText.Position = UDim2.new(-0.0037313432, 0, 0.25, 0)
-			NotificationText.Size = UDim2.new(0, 268, 0, 66)
-			NotificationText.ZIndex = 2
-			NotificationText.Font = Enum.Font.GothamSemibold
-			NotificationText.Text = content.Text
-			NotificationText.TextColor3 = Color3.fromRGB(233, 233, 233)
-			NotificationText.TextSize = 14.000
-			NotificationOkay.Name = "NotificationOkay"
-			NotificationOkay.Parent = NotificationMain
-			NotificationOkay.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			NotificationOkay.BorderSizePixel = 0
-			NotificationOkay.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
-			NotificationOkay.Size = UDim2.new(0, 256, 0, 21)
-			NotificationOkay.Font = Enum.Font.GothamSemibold
-			NotificationOkay.Text = content.ConfirmText
-			NotificationOkay.TextColor3 = Color3.fromRGB(233, 233, 233)
-			NotificationOkay.TextSize = 13.000
-			NotificationOkay.MouseButton1Click:connect(function()
-				tweenObject(NotificationMain, {
-					Position = UDim2.new(-0.3, 0, 0.775, 0)
-				}, 0.5)
-				wait(0.5)
-				NotificationMain:Destroy()
-			end)
-		elseif Type == "Error" then
-			local ErrorMain = Instance.new("ImageLabel")
-			local ErrorDropShadow = Instance.new("ImageLabel")
-			local ErrorTitleHolder = Instance.new("Frame")
-			local ErrorTitle = Instance.new("TextLabel")
-			local ErrorBad = Instance.new("ImageLabel")
-			local ErrorText = Instance.new("TextLabel")
-			local ErrorOkay = Instance.new("TextButton")
-			ErrorMain.Name = "ErrorMain"
-			ErrorMain.Parent = BloxburgUi
-			ErrorMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ErrorMain.BackgroundTransparency = 1.000
-			ErrorMain.Position = UDim2.new(-0.3, 0, 0.775, 0)
-			tweenObject(ErrorMain, {
-				Position = UDim2.new(0.015, 0, 0.775, 0)
-			}, 0.5)
-			ErrorMain.Size = UDim2.new(0, 268, 0, 124)
-			ErrorMain.Image = "rbxassetid://3570695787"
-			ErrorMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
-			ErrorMain.ScaleType = Enum.ScaleType.Slice
-			ErrorMain.SliceCenter = Rect.new(100, 100, 100, 100)
-			ErrorMain.SliceScale = 0.050
-			ErrorDropShadow.Name = "ErrorDropShadow"
-			ErrorDropShadow.Parent = ErrorMain
-			ErrorDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ErrorDropShadow.BackgroundTransparency = 1.000
-			ErrorDropShadow.Position = UDim2.new(-0.315028518, 0, -0.540322602, 0)
-			ErrorDropShadow.Size = UDim2.new(0, 442, 0, 258)
-			ErrorDropShadow.ZIndex = -1
-			ErrorDropShadow.Image = "rbxassetid://5089202498"
-			ErrorTitleHolder.Name = "ErrorTitleHolder"
-			ErrorTitleHolder.Parent = ErrorMain
-			ErrorTitleHolder.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			ErrorTitleHolder.BorderSizePixel = 0
-			ErrorTitleHolder.Size = UDim2.new(0, 268, 0, 31)
-			ErrorTitle.Name = "ErrorTitle"
-			ErrorTitle.Parent = ErrorTitleHolder
-			ErrorTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ErrorTitle.BackgroundTransparency = 1.000
-			ErrorTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
-			ErrorTitle.Size = UDim2.new(0, 261, 0, 31)
-			ErrorTitle.Font = Enum.Font.GothamSemibold
-			ErrorTitle.Text = "ERROR"
-			ErrorTitle.TextColor3 = Color3.fromRGB(233, 58, 53)
-			ErrorTitle.TextSize = 14.000
-			ErrorTitle.TextXAlignment = Enum.TextXAlignment.Left
-			ErrorBad.Name = "ErrorBad"
-			ErrorBad.Parent = ErrorTitleHolder
-			ErrorBad.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ErrorBad.BackgroundTransparency = 1.000
-			ErrorBad.Position = UDim2.new(0.914178848, 0, 0.225806445, 0)
-			ErrorBad.Size = UDim2.new(0, 17, 0, 17)
-			ErrorBad.Image = "rbxgameasset://Images/d"
-			ErrorBad.ImageColor3 = Color3.fromRGB(233, 58, 53)
-			ErrorText.Name = "ErrorText"
-			ErrorText.Parent = ErrorMain
-			ErrorText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ErrorText.BackgroundTransparency = 1.000
-			ErrorText.Position = UDim2.new(-0.0037313432, 0, 0.25, 0)
-			ErrorText.Size = UDim2.new(0, 268, 0, 66)
-			ErrorText.ZIndex = 2
-			ErrorText.Font = Enum.Font.GothamSemibold
-			ErrorText.Text = content.Text
-			ErrorText.TextColor3 = Color3.fromRGB(233, 233, 233)
-			ErrorText.TextSize = 14.000
-			ErrorOkay.Name = "ErrorOkay"
-			ErrorOkay.Parent = ErrorMain
-			ErrorOkay.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			ErrorOkay.BorderSizePixel = 0
-			ErrorOkay.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
-			ErrorOkay.Size = UDim2.new(0, 256, 0, 21)
-			ErrorOkay.Font = Enum.Font.GothamSemibold
-			ErrorOkay.Text = content.ConfirmText
-			ErrorOkay.TextColor3 = Color3.fromRGB(233, 233, 233)
-			ErrorOkay.TextSize = 13.000
-			ErrorOkay.MouseButton1Click:connect(function()
-				tweenObject(ErrorMain, {
-					Position = UDim2.new(-0.3, 0, 0.775, 0)
-				}, 0.5)
-				wait(0.5)
-				ErrorMain:Destroy()
-			end)
-		elseif Type == "Confirm" then
-			local NotificationMain = Instance.new("ImageLabel")
-			local NotificationDropShadow = Instance.new("ImageLabel")
-			local NotificationTitleHodler = Instance.new("Frame")
-			local NotificationTitle = Instance.new("TextLabel")
-			local NotificationCool = Instance.new("ImageLabel")
-			local NotificationText = Instance.new("TextLabel")
-			local NotificationYes = Instance.new("TextButton")
-			local NotificationNo = Instance.new("TextButton")
-			NotificationMain.Name = "NotificationMain"
-			NotificationMain.Parent = BloxburgUi
-			NotificationMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationMain.BackgroundTransparency = 1.000
-			NotificationMain.Position = UDim2.new(-0.3, 0, 0.775, 0)
-			NotificationMain.Size = UDim2.new(0, 268, 0, 124)
-			NotificationMain.Image = "rbxassetid://3570695787"
-			NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
-			NotificationMain.ScaleType = Enum.ScaleType.Slice
-			NotificationMain.SliceCenter = Rect.new(100, 100, 100, 100)
-			NotificationMain.SliceScale = 0.050
-			tweenObject(NotificationMain, {
-				Position = UDim2.new(0.015, 0, 0.775, 0)
-			}, 0.5)
-			NotificationDropShadow.Name = "NotificationDropShadow"
-			NotificationDropShadow.Parent = NotificationMain
-			NotificationDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationDropShadow.BackgroundTransparency = 1.000
-			NotificationDropShadow.Position = UDim2.new(-0.315028518, 0, -0.540322602, 0)
-			NotificationDropShadow.Size = UDim2.new(0, 442, 0, 258)
-			NotificationDropShadow.ZIndex = -1
-			NotificationDropShadow.Image = "rbxassetid://5089202498"
-			NotificationTitleHodler.Name = "NotificationTitleHodler"
-			NotificationTitleHodler.Parent = NotificationMain
-			NotificationTitleHodler.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			NotificationTitleHodler.BorderSizePixel = 0
-			NotificationTitleHodler.Size = UDim2.new(0, 268, 0, 31)
-			NotificationTitle.Name = "NotificationTitle"
-			NotificationTitle.Parent = NotificationTitleHodler
-			NotificationTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationTitle.BackgroundTransparency = 1.000
-			NotificationTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
-			NotificationTitle.Size = UDim2.new(0, 261, 0, 31)
-			NotificationTitle.Font = Enum.Font.GothamSemibold
-			NotificationTitle.Text = "Confirm"
-			NotificationTitle.TextColor3 = Color3.fromRGB(88, 170, 205)
-			NotificationTitle.TextSize = 14.000
-			NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
-			NotificationCool.Name = "NotificationCool"
-			NotificationCool.Parent = NotificationTitleHodler
-			NotificationCool.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationCool.BackgroundTransparency = 1.000
-			NotificationCool.Position = UDim2.new(0.914178967, 0, 0.225806445, 0)
-			NotificationCool.Size = UDim2.new(0, 17, 0, 17)
-			NotificationCool.Image = "rbxgameasset://Images/w"
-			NotificationText.Name = "NotificationText"
-			NotificationText.Parent = NotificationMain
-			NotificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NotificationText.BackgroundTransparency = 1.000
-			NotificationText.Position = UDim2.new(-0.0037313432, 0, 0.25, 0)
-			NotificationText.Size = UDim2.new(0, 268, 0, 66)
-			NotificationText.ZIndex = 2
-			NotificationText.Font = Enum.Font.GothamSemibold
-			NotificationText.Text = content.Text
-			NotificationText.TextColor3 = Color3.fromRGB(233, 233, 233)
-			NotificationText.TextSize = 14.000
-			NotificationYes.Name = "NotificationYes"
-			NotificationYes.Parent = NotificationMain
-			NotificationYes.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			NotificationYes.BorderSizePixel = 0
-			NotificationYes.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
-			NotificationYes.Size = UDim2.new(0, 128, 0, 21)
-			NotificationYes.Font = Enum.Font.GothamSemibold
-			NotificationYes.Text = "Yes"
-			NotificationYes.TextColor3 = Color3.fromRGB(0, 255, 0)
-			NotificationYes.TextSize = 13.000
-			NotificationNo.Name = "NotificationNo"
-			NotificationNo.Parent = NotificationMain
-			NotificationNo.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
-			NotificationNo.BorderSizePixel = 0
-			NotificationNo.Position = UDim2.new(0.5, 0, 0.782258093, 0)
-			NotificationNo.Size = UDim2.new(0, 128, 0, 21)
-			NotificationNo.Font = Enum.Font.GothamSemibold
-			NotificationNo.Text = "No"
-			NotificationNo.TextColor3 = Color3.fromRGB(233, 0, 0)
-			NotificationNo.TextSize = 13.000
-			NotificationYes.MouseButton1Click:Connect(function()
-				tweenObject(NotificationMain, {
-					Position = UDim2.new(-0.3, 0, 0.775, 0)
-				}, 0.5)
-				wait(0.5)
-				NotificationMain:Destroy()
-				NotificationMain = nil
-				if callback then
-					callback(true)
-				end
-			end)
-			NotificationNo.MouseButton1Click:Connect(function()
-				tweenObject(NotificationMain, {
-					Position = UDim2.new(-0.3, 0, 0.775, 0)
-				}, 0.5)
-				wait(0.5)
-				NotificationMain:Destroy()
-				NotificationMain = nil
-				if callback then
-					callback(false)
-				end
-			end)
-		end
-	end
+	local activeNotifications = {}
+    function window:Notification(options)
+        wait(0.5)
+        local Type = options.Type 
+        local content = options.Content
+        local callback = options.Callback 
+        
+    	local NotificationMain = Instance.new("ImageLabel")
+    
+    	for i, notif in pairs(activeNotifications) do
+    		tweenObject(notif, {
+    			Position = UDim2.new(notif.Position.X.Scale, notif.Position.X.Offset, notif.Position.Y.Scale, notif.Position.Y.Offset - 150)
+    		}, 0.2)
+    	end
+    
+    	table.insert(activeNotifications, NotificationMain)
+    
+    	local function getStartPosition()
+    		return UDim2.new(-0.3, 0, NotificationMain.Position.Y.Scale, NotificationMain.Position.Y.Offset)
+    	end
+    	
+    	local notifStartPosition = UDim2.new(-0.3, 0, 0.88, 0)
+    	local notifEndPosition = UDim2.new(0.015, 0, 0.88, 0)
+    
+    	if Type == "Message" then
+    		local NotificationDropShadow = Instance.new("ImageLabel")
+    		local NotificationTitleHodler = Instance.new("Frame")
+    		local NotificationTitle = Instance.new("TextLabel")
+    		local NotificationCool = Instance.new("ImageLabel")
+    		local NotificationText = Instance.new("TextLabel")
+    		local NotificationOkay = Instance.new("TextButton")
+    		NotificationMain.Name = "NotificationMain"
+    		NotificationMain.Parent = BloxburgUi
+    		NotificationMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationMain.BackgroundTransparency = 1.000
+    		NotificationMain.Position = notifStartPosition
+    		tweenObject(NotificationMain, {
+    			Position = notifEndPosition
+    		}, 0.5)
+    		NotificationMain.Size = UDim2.new(0, 268, 0, 124)
+    		NotificationMain.Image = "rbxassetid://3570695787"
+    		NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
+    		NotificationMain.ScaleType = Enum.ScaleType.Slice
+    		NotificationMain.SliceCenter = Rect.new(100, 100, 100, 100)
+    		NotificationMain.SliceScale = 0.050
+    		NotificationDropShadow.Name = "NotificationDropShadow"
+    		NotificationDropShadow.Parent = NotificationMain
+    		NotificationDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationDropShadow.BackgroundTransparency = 1.000
+    		NotificationDropShadow.Position = UDim2.new(-0.315028518, 0, -0.540322602, 0)
+    		NotificationDropShadow.Size = UDim2.new(0, 442, 0, 258)
+    		NotificationDropShadow.ZIndex = -1
+    		NotificationDropShadow.Image = "rbxassetid://5089202498"
+    		NotificationTitleHodler.Name = "NotificationTitleHodler"
+    		NotificationTitleHodler.Parent = NotificationMain
+    		NotificationTitleHodler.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		NotificationTitleHodler.BorderSizePixel = 0
+    		NotificationTitleHodler.Size = UDim2.new(0, 268, 0, 31)
+    		NotificationTitle.Name = "NotificationTitle"
+    		NotificationTitle.Parent = NotificationTitleHodler
+    		NotificationTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationTitle.BackgroundTransparency = 1.000
+    		NotificationTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
+    		NotificationTitle.Size = UDim2.new(0, 261, 0, 31)
+    		NotificationTitle.Font = Enum.Font.GothamSemibold
+    		NotificationTitle.Text = "Notification"
+    		NotificationTitle.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		NotificationTitle.TextSize = 14.000
+    		NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
+    		NotificationCool.Name = "NotificationCool"
+    		NotificationCool.Parent = NotificationTitleHodler
+    		NotificationCool.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationCool.BackgroundTransparency = 1.000
+    		NotificationCool.Position = UDim2.new(0.914178967, 0, 0.225806445, 0)
+    		NotificationCool.Size = UDim2.new(0, 17, 0, 17)
+    		NotificationCool.Image = "rbxgameasset://Images/w"
+    		NotificationText.Name = "NotificationText"
+    		NotificationText.Parent = NotificationMain
+    		NotificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationText.BackgroundTransparency = 1.000
+    		NotificationText.Position = UDim2.new(-0.0037313432, 0, 0.25, 0)
+    		NotificationText.Size = UDim2.new(0, 268, 0, 66)
+    		NotificationText.ZIndex = 2
+    		NotificationText.Font = Enum.Font.GothamSemibold
+    		NotificationText.Text = content.Text
+    		NotificationText.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		NotificationText.TextSize = 14.000
+    		NotificationOkay.Name = "NotificationOkay"
+    		NotificationOkay.Parent = NotificationMain
+    		NotificationOkay.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		NotificationOkay.BorderSizePixel = 0
+    		NotificationOkay.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
+    		NotificationOkay.Size = UDim2.new(0, 256, 0, 21)
+    		NotificationOkay.Font = Enum.Font.GothamSemibold
+    		NotificationOkay.Text = content.ConfirmText
+    		NotificationOkay.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		NotificationOkay.TextSize = 13.000
+    		NotificationOkay.MouseButton1Click:connect(function()
+    			tweenObject(NotificationMain, {
+    				Position = getStartPosition()
+    			}, 0.5)
+    			wait(0.5)
+    			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
+    			NotificationMain:Destroy()
+    			
+    			for i, notif in pairs(activeNotifications) do
+    			    if notif.Position.Y.Offset < NotificationMain.Position.Y.Offset then
+                		tweenObject(notif, {
+                			Position = UDim2.new(notif.Position.X.Scale, notif.Position.X.Offset, notif.Position.Y.Scale, notif.Position.Y.Offset + 150)
+                		}, 0.2)
+                	end
+            	end
+    		end)
+    	elseif Type == "Error" then
+    		local ErrorDropShadow = Instance.new("ImageLabel")
+    		local ErrorTitleHolder = Instance.new("Frame")
+    		local ErrorTitle = Instance.new("TextLabel")
+    		local ErrorBad = Instance.new("ImageLabel")
+    		local ErrorText = Instance.new("TextLabel")
+    		local ErrorOkay = Instance.new("TextButton")
+    		NotificationMain.Name = "NotificationMain"
+    		NotificationMain.Parent = BloxburgUi
+    		NotificationMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationMain.BackgroundTransparency = 1.000
+    		NotificationMain.Position = notifStartPosition
+    		tweenObject(NotificationMain, {
+    			Position = notifEndPosition
+    		}, 0.5)
+    		NotificationMain.Size = UDim2.new(0, 268, 0, 124)
+    		NotificationMain.Image = "rbxassetid://3570695787"
+    		NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
+    		NotificationMain.ScaleType = Enum.ScaleType.Slice
+    		NotificationMain.SliceCenter = Rect.new(100, 100, 100, 100)
+    		NotificationMain.SliceScale = 0.050
+    		ErrorDropShadow.Name = "ErrorDropShadow"
+    		ErrorDropShadow.Parent = NotificationMain
+    		ErrorDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		ErrorDropShadow.BackgroundTransparency = 1.000
+    		ErrorDropShadow.Position = UDim2.new(-0.315028518, 0, -0.540322602, 0)
+    		ErrorDropShadow.Size = UDim2.new(0, 442, 0, 258)
+    		ErrorDropShadow.ZIndex = -1
+    		ErrorDropShadow.Image = "rbxassetid://5089202498"
+    		ErrorTitleHolder.Name = "ErrorTitleHolder"
+    		ErrorTitleHolder.Parent = NotificationMain
+    		ErrorTitleHolder.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		ErrorTitleHolder.BorderSizePixel = 0
+    		ErrorTitleHolder.Size = UDim2.new(0, 268, 0, 31)
+    		ErrorTitle.Name = "ErrorTitle"
+    		ErrorTitle.Parent = ErrorTitleHolder
+    		ErrorTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		ErrorTitle.BackgroundTransparency = 1.000
+    		ErrorTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
+    		ErrorTitle.Size = UDim2.new(0, 261, 0, 31)
+    		ErrorTitle.Font = Enum.Font.GothamSemibold
+    		ErrorTitle.Text = "ERROR"
+    		ErrorTitle.TextColor3 = Color3.fromRGB(233, 58, 53)
+    		ErrorTitle.TextSize = 14.000
+    		ErrorTitle.TextXAlignment = Enum.TextXAlignment.Left
+    		ErrorBad.Name = "ErrorBad"
+    		ErrorBad.Parent = ErrorTitleHolder
+    		ErrorBad.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		ErrorBad.BackgroundTransparency = 1.000
+    		ErrorBad.Position = UDim2.new(0.914178848, 0, 0.225806445, 0)
+    		ErrorBad.Size = UDim2.new(0, 17, 0, 17)
+    		ErrorBad.Image = "rbxgameasset://Images/d"
+    		ErrorBad.ImageColor3 = Color3.fromRGB(233, 58, 53)
+    		ErrorText.Name = "ErrorText"
+    		ErrorText.Parent = NotificationMain
+    		ErrorText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		ErrorText.BackgroundTransparency = 1.000
+    		ErrorText.Position = UDim2.new(-0.0037313432, 0, 0.25, 0)
+    		ErrorText.Size = UDim2.new(0, 268, 0, 66)
+    		ErrorText.ZIndex = 2
+    		ErrorText.Font = Enum.Font.GothamSemibold
+    		ErrorText.Text = content.Text
+    		ErrorText.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		ErrorText.TextSize = 14.000
+    		ErrorOkay.Name = "ErrorOkay"
+    		ErrorOkay.Parent = NotificationMain
+    		ErrorOkay.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		ErrorOkay.BorderSizePixel = 0
+    		ErrorOkay.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
+    		ErrorOkay.Size = UDim2.new(0, 256, 0, 21)
+    		ErrorOkay.Font = Enum.Font.GothamSemibold
+    		ErrorOkay.Text = content.ConfirmText
+    		ErrorOkay.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		ErrorOkay.TextSize = 13.000
+    		ErrorOkay.MouseButton1Click:connect(function()
+    			tweenObject(NotificationMain, {
+    				Position = getStartPosition()
+    			}, 0.5)
+    			wait(0.5)
+    			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
+    			NotificationMain:Destroy()
+    			
+    			for i, notif in pairs(activeNotifications) do
+    			    if notif.Position.Y.Offset < NotificationMain.Position.Y.Offset then
+                		tweenObject(notif, {
+                			Position = UDim2.new(notif.Position.X.Scale, notif.Position.X.Offset, notif.Position.Y.Scale, notif.Position.Y.Offset + 150)
+                		}, 0.2)
+                	end
+            	end
+    		end)
+    	elseif Type == "Confirm" then
+    		local NotificationDropShadow = Instance.new("ImageLabel")
+    		local NotificationTitleHodler = Instance.new("Frame")
+    		local NotificationTitle = Instance.new("TextLabel")
+    		local NotificationCool = Instance.new("ImageLabel")
+    		local NotificationText = Instance.new("TextLabel")
+    		local NotificationYes = Instance.new("TextButton")
+    		local NotificationNo = Instance.new("TextButton")
+    		NotificationMain.Name = "NotificationMain"
+    		NotificationMain.Parent = BloxburgUi
+    		NotificationMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationMain.BackgroundTransparency = 1.000
+    		NotificationMain.Position = notifStartPosition
+    		NotificationMain.Size = UDim2.new(0, 268, 0, 124)
+    		NotificationMain.Image = "rbxassetid://3570695787"
+    		NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
+    		NotificationMain.ScaleType = Enum.ScaleType.Slice
+    		NotificationMain.SliceCenter = Rect.new(100, 100, 100, 100)
+    		NotificationMain.SliceScale = 0.050
+    		tweenObject(NotificationMain, {
+    			Position = notifEndPosition
+    		}, 0.5)
+    		NotificationDropShadow.Name = "NotificationDropShadow"
+    		NotificationDropShadow.Parent = NotificationMain
+    		NotificationDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationDropShadow.BackgroundTransparency = 1.000
+    		NotificationDropShadow.Position = UDim2.new(-0.315028518, 0, -0.540322602, 0)
+    		NotificationDropShadow.Size = UDim2.new(0, 442, 0, 258)
+    		NotificationDropShadow.ZIndex = -1
+    		NotificationDropShadow.Image = "rbxassetid://5089202498"
+    		NotificationTitleHodler.Name = "NotificationTitleHodler"
+    		NotificationTitleHodler.Parent = NotificationMain
+    		NotificationTitleHodler.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		NotificationTitleHodler.BorderSizePixel = 0
+    		NotificationTitleHodler.Size = UDim2.new(0, 268, 0, 31)
+    		NotificationTitle.Name = "NotificationTitle"
+    		NotificationTitle.Parent = NotificationTitleHodler
+    		NotificationTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationTitle.BackgroundTransparency = 1.000
+    		NotificationTitle.Position = UDim2.new(0.0261194035, 0, 0, 0)
+    		NotificationTitle.Size = UDim2.new(0, 261, 0, 31)
+    		NotificationTitle.Font = Enum.Font.GothamSemibold
+    		NotificationTitle.Text = "Confirm"
+    		NotificationTitle.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		NotificationTitle.TextSize = 14.000
+    		NotificationTitle.TextXAlignment = Enum.TextXAlignment.Left
+    		NotificationCool.Name = "NotificationCool"
+    		NotificationCool.Parent = NotificationTitleHodler
+    		NotificationCool.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationCool.BackgroundTransparency = 1.000
+    		NotificationCool.Position = UDim2.new(0.914178967, 0, 0.225806445, 0)
+    		NotificationCool.Size = UDim2.new(0, 17, 0, 17)
+    		NotificationCool.Image = "rbxgameasset://Images/w"
+    		NotificationText.Name = "NotificationText"
+    		NotificationText.Parent = NotificationMain
+    		NotificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    		NotificationText.BackgroundTransparency = 1.000
+    		NotificationText.Position = UDim2.new(-0.0037313432, 0, 0.25, 0)
+    		NotificationText.Size = UDim2.new(0, 268, 0, 66)
+    		NotificationText.ZIndex = 2
+    		NotificationText.Font = Enum.Font.GothamSemibold
+    		NotificationText.Text = content.Text
+    		NotificationText.TextColor3 = Color3.fromRGB(233, 233, 233)
+    		NotificationText.TextSize = 14.000
+    		NotificationYes.Name = "NotificationYes"
+    		NotificationYes.Parent = NotificationMain
+    		NotificationYes.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		NotificationYes.BorderSizePixel = 0
+    		NotificationYes.Position = UDim2.new(0.0223880596, 0, 0.782258093, 0)
+    		NotificationYes.Size = UDim2.new(0, 128, 0, 21)
+    		NotificationYes.Font = Enum.Font.GothamSemibold
+    		NotificationYes.Text = "Yes"
+    		NotificationYes.TextColor3 = Color3.fromRGB(0, 255, 0)
+    		NotificationYes.TextSize = 13.000
+    		NotificationNo.Name = "NotificationNo"
+    		NotificationNo.Parent = NotificationMain
+    		NotificationNo.BackgroundColor3 = Color3.fromRGB(14, 14, 14)
+    		NotificationNo.BorderSizePixel = 0
+    		NotificationNo.Position = UDim2.new(0.5, 0, 0.782258093, 0)
+    		NotificationNo.Size = UDim2.new(0, 128, 0, 21)
+    		NotificationNo.Font = Enum.Font.GothamSemibold
+    		NotificationNo.Text = "No"
+    		NotificationNo.TextColor3 = Color3.fromRGB(233, 0, 0)
+    		NotificationNo.TextSize = 13.000
+    		NotificationYes.MouseButton1Click:Connect(function()
+    			tweenObject(NotificationMain, {
+    				Position = getStartPosition()
+    			}, 0.5)
+    			wait(0.5)
+    			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
+    			NotificationMain:Destroy()
+    			
+    			for i, notif in pairs(activeNotifications) do
+    			    if notif.Position.Y.Offset < NotificationMain.Position.Y.Offset then
+                		tweenObject(notif, {
+                			Position = UDim2.new(notif.Position.X.Scale, notif.Position.X.Offset, notif.Position.Y.Scale, notif.Position.Y.Offset + 150)
+                		}, 0.2)
+                	end
+    			end
+        	
+    			NotificationMain = nil
+    			if callback then
+    				callback(true)
+    			end
+    		end)
+    		NotificationNo.MouseButton1Click:Connect(function()
+    			tweenObject(NotificationMain, {
+    				Position = getStartPosition()
+    			}, 0.5)
+    			wait(0.5)
+    			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
+    			NotificationMain:Destroy()
+    			
+    			for i, notif in pairs(activeNotifications) do
+    			    if notif.Position.Y.Offset < NotificationMain.Position.Y.Offset then
+                		tweenObject(notif, {
+                			Position = UDim2.new(notif.Position.X.Scale, notif.Position.X.Offset, notif.Position.Y.Scale, notif.Position.Y.Offset + 150)
+                		}, 0.2)
+                	end
+    			end
+        	
+    			NotificationMain = nil
+    			if callback then
+    				callback(false)
+    			end
+    		end)
+    	end
+    
+    	local notification = {}
+    	function notification:Close()
+    		tweenObject(NotificationMain, {
+    			Position = getStartPosition()
+    		}, 0.5)
+    		wait(0.5)
+    		table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
+    		
+    		NotificationMain:Destroy()
+    		
+    		for i, notif in pairs(activeNotifications) do
+			    if notif.Position.Y.Offset < NotificationMain.Position.Y.Offset then
+            		tweenObject(notif, {
+            			Position = UDim2.new(notif.Position.X.Scale, notif.Position.X.Offset, notif.Position.Y.Scale, notif.Position.Y.Offset + 150)
+            		}, 0.2)
+            	end
+    		end
+			
+    		NotificationMain = nil
+    		if callback then
+    			callback(false)
+    		end
+    	end
+    
+    	return notification
+    end
 	local activeTab = nil
 	local activeTabFrame = nil
 	function window:Tab(options)
@@ -711,7 +781,7 @@ function library:Window(options)
 				
 				local default = setting or options.Default
 				
-				if not library.flags[name] then 
+				if library.flags[name] == nil then 
 					library.flags[name] = default or min
 				end 
 				
@@ -809,7 +879,7 @@ function library:Window(options)
                 local OldCallback = callback or function() end
 				callback = function(Value)
 					library.flags[name] = Value
-					AddSetting(name, tostring(Value))
+					AddSetting(name, Value)
                     return OldCallback(Value)
 				end
 
@@ -919,6 +989,7 @@ function library:Window(options)
 				local slider = {}
 				function slider:Update(val)
 					value = math.clamp(val, min, max)
+					SliderValue.Text = value
 					local percent = 1 - ((max - value) / (max - min))
 					tweenObject(Sliderhandle, {
 						Size = UDim2.new(0, percent * 380, 0, 6)
@@ -935,7 +1006,7 @@ function library:Window(options)
 				local name = options.Name
 				local callback = options.Callback
 
-				if not library.flags[name] then 
+				if library.flags[name] == nil then 
 					library.flags[name] = default or ""
 				end 
 
@@ -1043,7 +1114,7 @@ function library:Window(options)
 
 				default = GetSetting(name) or default 
 
-				if not library.flags[name] then 
+				if library.flags[name] == nil then 
 					library.flags[name] = default or options[1]
 				end 
 
@@ -1171,7 +1242,7 @@ function library:Window(options)
 				setting = setting == "true" and true or false
 				default = setting or default 
 
-				if not library.flags[name] then 
+				if library.flags[name] == nil then 
 					library.flags[name] = default or false 
 				end 
 
@@ -1362,7 +1433,7 @@ function library:Window(options)
 
 				default = setting or default 
 
-				if not library.flags[name] then 
+				if library.flags[name] == nil then 
 					library.flags[name] = default or Color3.fromRGB(255, 0, 0)
 				end 
 
@@ -1378,6 +1449,7 @@ function library:Window(options)
                     return OldCallback(Value)
 				end
 
+				print(library.flags[name])
 				local Main = Instance.new("ImageLabel")
 				local Dark = Instance.new("ImageLabel")
 				local White = Instance.new("ImageButton")
@@ -1780,7 +1852,12 @@ function library:Window(options)
 					Main.Visible = not Main.Visible
 				end)
 			end
-			--[[function section:Keybind(name, default, callback)
+			
+			function section:Keybind(options)
+			    local name = options.Name 
+			    local default = options.Default 
+			    local callback = options.Callback 
+			    
 				local setting = GetSetting(name) 
 				setting = setting and setting:split(".")[3]
 				default = setting or default 
@@ -1859,7 +1936,8 @@ function library:Window(options)
 						end
 					end)
 				end)
-			end]]
+			end
+			
 			function section:SearchBox(settings)
 			    local name = settings.Name 
 			    local options = settings.List 
