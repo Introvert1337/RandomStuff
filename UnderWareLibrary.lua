@@ -1443,7 +1443,6 @@ function library:Window(options)
                     return OldCallback(Value)
 				end
 
-				print(library.flags[name])
 				local Main = Instance.new("ImageLabel")
 				local Dark = Instance.new("ImageLabel")
 				local White = Instance.new("ImageButton")
