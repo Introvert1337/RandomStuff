@@ -194,15 +194,9 @@ function library:Window(options)
 		end
 	end)
 
-	local opened = true
-
 	UserInputService.InputBegan:Connect(function(input)
 		if input.KeyCode == Enum.KeyCode.RightControl then
-			if opened == true then
-				MainUIFrame.Visible = false
-			elseif opened == false then
-				MainUIFrame.Visible = true
-			end
+			MainUIFrame.Visible = not MainUIFrame.Visible
 		end
 	end)
 
