@@ -223,7 +223,7 @@ function library:Window(options)
     	end
     	
     	local notifStartPosition = UDim2.new(-0.3, 0, 0.88, 0)
-    	local notifEndPosition = UDim2.new(0.015, 0, 0.88, 0)
+    	local notifEndPosition = UDim2.new(0.02, 0, 0.88, 0)
     
     	if Type == "Message" then
     		local NotificationDropShadow = Instance.new("ImageLabel")
@@ -239,7 +239,7 @@ function library:Window(options)
     		NotificationMain.Position = notifStartPosition
     		tweenObject(NotificationMain, {
     			Position = notifEndPosition
-    		}, 0.5)
+    		}, 0.2)
     		NotificationMain.Size = UDim2.new(0, 268, 0, 124)
     		NotificationMain.Image = "rbxassetid://3570695787"
     		NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
@@ -301,8 +301,8 @@ function library:Window(options)
     		NotificationOkay.MouseButton1Click:connect(function()
     			tweenObject(NotificationMain, {
     				Position = getStartPosition()
-    			}, 0.5)
-    			wait(0.5)
+    			}, 0.2)
+    			wait(0.2)
     			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
     			NotificationMain:Destroy()
     			
@@ -328,7 +328,7 @@ function library:Window(options)
     		NotificationMain.Position = notifStartPosition
     		tweenObject(NotificationMain, {
     			Position = notifEndPosition
-    		}, 0.5)
+    		}, 0.2)
     		NotificationMain.Size = UDim2.new(0, 268, 0, 124)
     		NotificationMain.Image = "rbxassetid://3570695787"
     		NotificationMain.ImageColor3 = Color3.fromRGB(22, 22, 22)
@@ -391,8 +391,8 @@ function library:Window(options)
     		ErrorOkay.MouseButton1Click:connect(function()
     			tweenObject(NotificationMain, {
     				Position = getStartPosition()
-    			}, 0.5)
-    			wait(0.5)
+    			}, 0.2)
+    			wait(0.2)
     			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
     			NotificationMain:Destroy()
     			
@@ -425,7 +425,7 @@ function library:Window(options)
     		NotificationMain.SliceScale = 0.050
     		tweenObject(NotificationMain, {
     			Position = notifEndPosition
-    		}, 0.5)
+    		}, 0.2)
     		NotificationDropShadow.Name = "NotificationDropShadow"
     		NotificationDropShadow.Parent = NotificationMain
     		NotificationDropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -491,8 +491,8 @@ function library:Window(options)
     		NotificationYes.MouseButton1Click:Connect(function()
     			tweenObject(NotificationMain, {
     				Position = getStartPosition()
-    			}, 0.5)
-    			wait(0.5)
+    			}, 0.2)
+    			wait(0.2)
     			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
     			NotificationMain:Destroy()
     			
@@ -512,8 +512,8 @@ function library:Window(options)
     		NotificationNo.MouseButton1Click:Connect(function()
     			tweenObject(NotificationMain, {
     				Position = getStartPosition()
-    			}, 0.5)
-    			wait(0.5)
+    			}, 0.2)
+    			wait(0.2)
     			table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
     			NotificationMain:Destroy()
     			
@@ -536,8 +536,8 @@ function library:Window(options)
     	function notification:Close()
     		tweenObject(NotificationMain, {
     			Position = getStartPosition()
-    		}, 0.5)
-    		wait(0.5)
+    		}, 0.2)
+    		wait(0.2)
     		table.remove(activeNotifications, table.find(activeNotifications, NotificationMain))
     		
     		NotificationMain:Destroy()
