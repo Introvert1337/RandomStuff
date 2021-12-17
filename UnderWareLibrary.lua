@@ -223,7 +223,7 @@ function library:Window(options)
     	end
     	
     	local notifStartPosition = UDim2.new(-0.3, 0, 0.88, 0)
-    	local notifEndPosition = UDim2.new(0.02, 0, 0.88, 0)
+    	local notifEndPosition = UDim2.new(0.025, 0, 0.88, 0)
     
     	if Type == "Message" then
     		local NotificationDropShadow = Instance.new("ImageLabel")
