@@ -24,7 +24,7 @@ local function fetch_key(caller_function)
     for index, constant in next, constants do
         if keys_list[constant] then -- if the constants already contain the raw key
             return constant;
-        elseif type(constant) ~= "string" or roblox_environment[constant] or string[constant] or table[constant] or constant:lower() ~= constant then
+        elseif type(constant) ~= "string" or constant == "" or roblox_environment[constant] or string[constant] or table[constant] or constant:lower() ~= constant then
             constants[index] = nil; -- remove constants that are 100% not the ones we need to make it a bit faster
         end;
     end;
