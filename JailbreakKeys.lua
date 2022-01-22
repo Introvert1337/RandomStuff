@@ -10,8 +10,6 @@ local keys_list = getupvalue(getupvalue(network.FireServer, 1), 3);
 
 local team_choose_ui = require(game_folder.TeamChooseUI);
 
-local start_time = tick();
-
 local network_keys = {};
 
 local roblox_environment = getrenv();
