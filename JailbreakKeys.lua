@@ -82,7 +82,7 @@ end;
 do -- exitcar
     local exit_car_function = getupvalue(team_choose_ui.Init, 3);
     
-    network_keys.Exitcar = fetch_key(exit_car_function);
+    network_keys.ExitCar = fetch_key(exit_car_function);
 end;
 
 do -- broadcastinputbegan / broadcastinputended
