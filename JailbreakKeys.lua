@@ -5,15 +5,13 @@ local start_time = tick();
 local replicated_storage = game:GetService("ReplicatedStorage");
 local collection_service = game:GetService("CollectionService");
 
-local game_folder = replicated_storage.Game;
-
 local network = getupvalue(require(replicated_storage.Module.AlexChassis).SetEvent, 1);
 local keys_list = getupvalue(getupvalue(network.FireServer, 1), 3);
 
+local game_folder = replicated_storage.Game;
 local team_choose_ui = require(game_folder.TeamChooseUI);
 
 local roblox_environment = getrenv();
-
 local network_keys = {};
 
 --// Functions 
@@ -138,9 +136,7 @@ do -- redeemcode
 end;
 
 do -- playsound
-    local client_functions = getupvalue(team_choose_ui.Init, 2);
-
-    for key, client_function in next, client_functions do 
+    for key, client_function in next, getupvalue(team_choose_ui.Init, 2) do 
         if type(client_function) == "function" and getconstants(client_function)[1] == "Source" then 
             network_keys.PlaySound = key;
             
