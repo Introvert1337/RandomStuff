@@ -10,26 +10,27 @@ local keys_list = getupvalue(getupvalue(network.FireServer, 1), 3);
 
 local team_choose_ui = require(game_folder.TeamChooseUI);
 
+local start_time = tick();
+
 local network_keys = {};
 
 local roblox_environment = getrenv();
 
 --// Functions 
 
-local function fetch_key(caller_function)
+local function fetch_key(caller_function, a)
     local constants = getconstants(caller_function);
     
     for index, constant in next, constants do
         if keys_list[constant] then -- if the constants already contain the raw key
             return constant;
-        elseif type(constant) ~= "string" or constant == "" or roblox_environment[constant] or string[constant] or table[constant] or constant:lower() ~= constant then
+        elseif type(constant) ~= "string" or constant == "" or roblox_environment[constant] or string[constant] or table[constant] or #constant > 7 or constant:lower() ~= constant then
             constants[index] = nil; -- remove constants that are 100% not the ones we need to make it a bit faster
         end;
     end;
-
-    local prefix_passed = false;
-
+    
     for key, remote in next, keys_list do 
+        local prefix_passed = false;
         local key_length = #key;
         
         for index, constant in next, constants do 
@@ -71,10 +72,10 @@ do -- damage
     network_keys.Damage = fetch_key(damage_function);
 end;
 
-do -- switchteam / exitcar / playsound
+do -- switchteam
     local switch_team_function = getproto(team_choose_ui.Show, 4);
-    
-    network_keys.SwitchTeam = fetch_key(switch_team_function);
+
+    network_keys.SwitchTeam = fetch_key(switch_team_function, true);
 end;
 
 do -- exitcar
@@ -136,30 +137,22 @@ do -- redeemcode
     network_keys.RedeemCode = fetch_key(redeem_code_function);
 end;
 
-do -- playsound / spawncar (different method because these ones have a client function and this method is faster)
+do -- playsound
     local client_functions = getupvalue(team_choose_ui.Init, 2);
 
     for key, client_function in next, client_functions do 
         if type(client_function) == "function" then 
-            local first_constant = getconstants(client_function)[1];
-            
-            if first_constant == "Source" then
+            if getconstants(client_function)[1] == "Source" then
                 network_keys.PlaySound = key;
                 
-                if network_keys.SpawnCar then 
-                    break;
-                end;
-            elseif first_constant == "GetSystemById" then 
-                network_keys.SpawnCar = key;
-                
-                if network_keys.PlaySound then 
-                    break;
-                end;
+                break;
             end;
         end;
     end; 
 end;
 
---// Return stuff
+--// Return Variables 
 
-return network_keys, network
+warn(("Key Fetcher Loaded in %s Seconds"):format(tick() - start_time));
+
+return network_keys, network;
