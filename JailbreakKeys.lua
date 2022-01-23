@@ -75,7 +75,7 @@ end;
 do -- switchteam
     local switch_team_function = getproto(team_choose_ui.Show, 4);
 
-    network_keys.SwitchTeam = fetch_key(switch_team_function, true);
+    network_keys.SwitchTeam = fetch_key(switch_team_function);
 end;
 
 do -- exitcar
@@ -141,12 +141,10 @@ do -- playsound
     local client_functions = getupvalue(team_choose_ui.Init, 2);
 
     for key, client_function in next, client_functions do 
-        if type(client_function) == "function" then 
-            if getconstants(client_function)[1] == "Source" then
-                network_keys.PlaySound = key;
-                
-                break;
-            end;
+        if type(client_function) == "function" and getconstants(client_function)[1] == "Source" then
+            network_keys.PlaySound = key;
+            
+            break;
         end;
     end; 
 end;
