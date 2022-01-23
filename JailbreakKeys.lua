@@ -1,5 +1,7 @@
 --// Variables 
 
+local start_time = tick();
+
 local replicated_storage = game:GetService("ReplicatedStorage");
 local collection_service = game:GetService("CollectionService");
 
@@ -10,11 +12,9 @@ local keys_list = getupvalue(getupvalue(network.FireServer, 1), 3);
 
 local team_choose_ui = require(game_folder.TeamChooseUI);
 
-local start_time = tick();
+local roblox_environment = getrenv();
 
 local network_keys = {};
-
-local roblox_environment = getrenv();
 
 --// Functions 
 
@@ -141,7 +141,7 @@ do -- playsound
     local client_functions = getupvalue(team_choose_ui.Init, 2);
 
     for key, client_function in next, client_functions do 
-        if type(client_function) == "function" and getconstants(client_function)[1] == "Source" then
+        if type(client_function) == "function" and getconstants(client_function)[1] == "Source" then 
             network_keys.PlaySound = key;
             
             break;
