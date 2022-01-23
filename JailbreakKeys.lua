@@ -18,7 +18,7 @@ local roblox_environment = getrenv();
 
 --// Functions 
 
-local function fetch_key(caller_function, a)
+local function fetch_key(caller_function)
     local constants = getconstants(caller_function);
     
     for index, constant in next, constants do
