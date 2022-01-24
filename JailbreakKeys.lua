@@ -1,3 +1,9 @@
+--// Check if Already in Env 
+
+if network_keys and network then 
+    return network_keys, network;
+end;
+
 --// Variables 
 
 local start_time = tick();
@@ -9,7 +15,9 @@ local network = getupvalue(require(replicated_storage.Module.AlexChassis).SetEve
 local keys_list = getupvalue(getupvalue(network.FireServer, 1), 3);
 
 local game_folder = replicated_storage.Game;
-local team_choose_ui = require(game_folder.TeamChooseUI);
+
+local team_choose_ui = require(game_folder.TeamChooseUI); -- module used in multiple keys
+local default_actions = require(game_folder.DefaultActions); -- module used in multiple keys
 
 local roblox_environment = getrenv();
 local network_keys = {};
@@ -45,15 +53,15 @@ end;
 
 --// Key Fetching 
 
-do -- punch
-    local punch_function = getupvalue(require(game_folder.DefaultActions).punchButton.onPressed, 1).attemptPunch;
-    
-    network_keys.Punch = fetch_key(punch_function);
+do -- redeemcode
+    local redeem_code_function = getproto(require(game_folder.Codes).Init, 4);
+
+    network_keys.RedeemCode = fetch_key(redeem_code_function);
 end;
 
 do -- kick
-    local connection = getconnections(collection_service:GetInstanceRemovedSignal("Door"))[1].Function;
-    local kick_function = getupvalue(getupvalue(getupvalue(getupvalue(connection, 2), 2).Run, 1), 1)[4].c;
+    local door_removed_signal = getconnections(collection_service:GetInstanceRemovedSignal("Door"))[1].Function;
+    local kick_function = getupvalue(getupvalue(getupvalue(getupvalue(door_removed_signal, 2), 2).Run, 1), 1)[4].c;
     
     network_keys.Kick = fetch_key(kick_function);
 end;
@@ -65,7 +73,8 @@ do -- spawncar
 end;
 
 do -- damage
-    local damage_function = getproto(require(game_folder.MilitaryTurret.MilitaryTurretBinder)._classAddedSignal._handlerListHead._fn, 1);
+    local military_added_signal = require(game_folder.MilitaryTurret.MilitaryTurretBinder)._classAddedSignal._handlerListHead._fn;
+    local damage_function = getproto(military_added_signal, 1);
     
     network_keys.Damage = fetch_key(damage_function);
 end;
@@ -82,6 +91,36 @@ do -- exitcar
     network_keys.ExitCar = fetch_key(exit_car_function);
 end;
 
+do -- taze
+    local taze_function = require(game_folder.Item.Taser).Tase;
+
+    network_keys.Taze = fetch_key(taze_function);
+end;
+
+do -- punch
+    local punch_function = getupvalue(default_actions.punchButton.onPressed, 1).attemptPunch;
+    
+    network_keys.Punch = fetch_key(punch_function);
+end;
+
+do -- falldamage
+    local jump_signal = default_actions.onJumpPressed._handlerListHead._next._fn;
+    local fall_function = getupvalue(getupvalue(getupvalue(jump_signal, 1), 4), 3);
+    
+    network_keys.FallDamage = fetch_key(fall_function);
+end;
+
+do -- pickpocket / arrest
+    local character_added_signal = getconnections(collection_service:GetInstanceAddedSignal("Character"))[1].Function;
+    local interact_function = getupvalue(character_added_signal, 2);
+
+    local pickpocket_function = getupvalue(getupvalue(interact_function, 2), 2);
+    local arrest_function = getupvalue(getupvalue(interact_function, 1), 7);
+
+    network_keys.Pickpocket = fetch_key(pickpocket_function);
+    network_keys.Arrest = fetch_key(arrest_function);
+end;
+
 do -- broadcastinputbegan / broadcastinputended
     local equip_function = require(game_folder.ItemSystem.ItemSystem)._equip;
 
@@ -92,15 +131,9 @@ do -- broadcastinputbegan / broadcastinputended
     network_keys.BroadcastInputEnded = fetch_key(input_ended_function);
 end;
 
-do -- taze
-    local taze_function = require(game_folder.Item.Taser).Tase;
-
-    network_keys.Taze = fetch_key(taze_function);
-end;
-
 do -- eject / hijack / entercar
-    local connection = getconnections(collection_service:GetInstanceAddedSignal("VehicleSeat"))[1].Function;
-    local seat_interact_function = getupvalue(connection, 1);
+    local seat_added_signal = getconnections(collection_service:GetInstanceAddedSignal("VehicleSeat"))[1].Function;
+    local seat_interact_function = getupvalue(seat_added_signal, 1);
 
     local hijack_function = getupvalue(seat_interact_function, 1);
     local eject_function = getupvalue(seat_interact_function, 2);
@@ -109,30 +142,6 @@ do -- eject / hijack / entercar
     network_keys.Hijack = fetch_key(hijack_function);
     network_keys.Eject = fetch_key(eject_function);
     network_keys.EnterCar = fetch_key(enter_car_function);
-end;
-
-do -- pickpocket / arrest
-    local connection = getconnections(collection_service:GetInstanceAddedSignal("Character"))[1].Function;
-    local interact_function = getupvalue(connection, 2);
-
-    local pickpocket_function = getupvalue(getupvalue(interact_function, 2), 2);
-    local arrest_function = getupvalue(getupvalue(interact_function, 1), 7);
-
-    network_keys.Pickpocket = fetch_key(pickpocket_function);
-    network_keys.Arrest = fetch_key(arrest_function);
-end;
-
-do -- falldamage
-    local connection = getconnections(getupvalue(require(game_folder.Falling).Init, 3).Button.MouseButton1Down)[1].Function;
-    local fall_function = getupvalue(getupvalue(getupvalue(connection, 1), 4), 3);
-
-    network_keys.FallDamage = fetch_key(fall_function);
-end;
-
-do -- redeemcode
-    local redeem_code_function = getproto(require(game_folder.Codes).Init, 4);
-
-    network_keys.RedeemCode = fetch_key(redeem_code_function);
 end;
 
 do -- playsound
@@ -146,6 +155,10 @@ do -- playsound
 end;
 
 --// Return Variables 
+
+local environment = getgenv();
+
+environment.network_keys, environment.network = network_keys, network;
 
 warn(("Key Fetcher Loaded in %s Seconds"):format(tick() - start_time));
 
