@@ -1,0 +1,127 @@
+• Autobuild
+  ➜ Saving
+  → Select Target
+  → Saves to Cloud with an ID
+
+  ➜ Building
+  → Show/Remove Preview
+  → Build from ID
+  → Bulldoze Plot
+  → Abort Build
+
+  ➜ Speed Settings
+  → Fast Mode
+  → Slow Mode
+  → Delay
+
+  ➜ Cash Settings
+  → Use Vehicles
+  → Use Blockbux
+  → Max Item Cost
+  → Max Blockbux Cost
+
+• Autofarm
+  ➜ Main
+  → Supports All Jobs
+  → Go To Job
+  → Enable / Disable Autofarm
+
+  ➜ Settings
+  → Stop After Amount
+
+  ➜ Stats
+  → Shift Earnings Display
+  → Shift Duration Display
+
+  ➜ Autofarm Safety
+  → Take Breaks
+  → Break Increment
+  → Break Time
+  → Hairdresser Work Delay
+  → Burger Work Delay
+  → Pizza Baker Work Delay
+
+• Misc
+  ➜ Random
+  → Go To Private Server
+  → Remove Stink Effect
+  → To Player's Plot
+  → Crash Server
+  → Open All Doors
+  → Click To Open Door
+
+  ➜ Auto Drive
+  → Landmark Locations
+  → Player House Locations
+  → Player Locations
+
+  ➜ Sky
+  → Change Time Of Day
+  → Change Weather
+
+  ➜ Fake Message
+  → Message, Error or Confirmation
+  → Select Text
+
+  ➜ Fake Paycheck
+  → Choose Amount
+  → Choose Job
+
+  ➜ Free Skills (Client Sided!)
+  → All Skills Except Cooking
+
+• Vehicle
+  ➜ Modifications
+  → Forward Speed
+  → Reverse Speed
+  → Turn Speed
+  → Spring
+
+• Auto Mood
+  ➜ Automatic
+  → Auto Boost Mood At Amount
+  → Get Moods To Amount
+  → Timeout
+
+  ➜ Manual
+  → Select Moods To Boost
+
+  ➜ Autocook
+  → Auto Complete Cooking Challenges
+  → Choose Food
+  → Cook Food
+
+• Visuals (ESP library made by coasts)
+  ➜ Plot ESP
+  → Enabled
+  → Tracers
+  → Name / Distance
+  → Color
+
+  ➜ Player ESP
+  → Enabled
+  → Tracers
+  → Box
+  → Name / Distance
+  → Color
+
+• Private Server Code Farm
+  ➜ Main
+  → Enable / Disable Toggle
+
+  ➜ Settings
+  → Output Location (File / Webhook)
+  → File Name
+  → Webhook URL
+
+• Player Stats Viewer
+  → Select Player
+  → Money
+  → Blockbux
+  → Amount Of Houses
+  → Copy Player Outfit
+
+• Pixel Art
+  → Image URL
+  → Image Size X
+  → Image Size Z
